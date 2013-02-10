@@ -1,9 +1,12 @@
 <?php
+
+namespace Debug\ErrorHook;
+
 /**
  * Auxilary class.
  * It performs all work with notification catching.
  */
-class Debug_ErrorHook_Catcher
+class Catcher
 {
     private $_notifiers = array();
     private $_active = true;
@@ -29,7 +32,7 @@ class Debug_ErrorHook_Catcher
         $this->_active = false;
     }
 
-    public function addNotifier(Debug_ErrorHook_INotifier $notifier)
+    public function addNotifier(INotifier $notifier)
     {
         $this->_notifiers[] = $notifier;
     }

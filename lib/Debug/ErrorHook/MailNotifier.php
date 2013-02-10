@@ -1,15 +1,14 @@
 <?php
+
+namespace Debug\ErrorHook;
 /**
  * Sends all notifications to a specified email.
  * 
- * Consider using this class together with Debug_ErrorHook_RemoveDupsWrapper
+ * Consider using this class together with RemoveDupsWrapper
  * to avoid mail server flooding when a lot of errors arrives. 
  */
 
-require_once "Debug/ErrorHook/Util.php";
-require_once "Debug/ErrorHook/TextNotifier.php";
-
-class Debug_ErrorHook_MailNotifier extends Debug_ErrorHook_TextNotifier
+class MailNotifier extends TextNotifier
 {
 	private $_to;
 	private $_charset;

@@ -1,9 +1,10 @@
 <?php
+namespace Debug\ErrorHook;
 /**
  * Notifier interface.
  * Should be implemented by all notifiers in the stack.
  */
-interface Debug_ErrorHook_INotifier
+interface INotifier
 {
 	/**
 	 * Called when an error occurred.

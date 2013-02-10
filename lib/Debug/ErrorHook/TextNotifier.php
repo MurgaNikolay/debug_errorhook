@@ -1,13 +1,12 @@
 <?php
+
+namespace Debug\ErrorHook;
 /**
  * Generic notifier wrapper. Converts notification
  * to a human-readable text representation.
  */
 
-require_once "Debug/ErrorHook/Util.php";
-require_once "Debug/ErrorHook/INotifier.php";
-
-abstract class Debug_ErrorHook_TextNotifier implements Debug_ErrorHook_INotifier
+abstract class TextNotifier implements INotifier
 {
 	const LOG_SERVER = 1;
 	const LOG_TRACE = 2;
@@ -42,22 +41,22 @@ abstract class Debug_ErrorHook_TextNotifier implements Debug_ErrorHook_INotifier
             ))
     	);
     	if ($this->_whatToLog & self::LOG_TRACE && $trace) {
-        	$body[] = $this->_makeSection("TRACE", Debug_ErrorHook_Util::backtraceToString($trace));
+        	$body[] = $this->_makeSection("TRACE", Util::backtraceToString($trace));
         }
         if ($this->_whatToLog & self::LOG_SERVER) {
-            $body[] = $this->_makeSection("SERVER", Debug_ErrorHook_Util::varExport($_SERVER));
+            $body[] = $this->_makeSection("SERVER", Util::varExport($_SERVER));
         }
         if ($this->_whatToLog & self::LOG_COOKIE) {
-            $body[] = $this->_makeSection("COOKIES", Debug_ErrorHook_Util::varExport($_COOKIE));
+            $body[] = $this->_makeSection("COOKIES", Util::varExport($_COOKIE));
         }
         if ($this->_whatToLog & self::LOG_GET) {
-            $body[] = $this->_makeSection("GET", Debug_ErrorHook_Util::varExport($_GET));
+            $body[] = $this->_makeSection("GET", Util::varExport($_GET));
         }
         if ($this->_whatToLog & self::LOG_POST) {
-            $body[] = $this->_makeSection("POST", Debug_ErrorHook_Util::varExport($_POST));
+            $body[] = $this->_makeSection("POST", Util::varExport($_POST));
         }
         if ($this->_whatToLog & self::LOG_SESSION) {
-            $body[] = $this->_makeSection("SESSION", Debug_ErrorHook_Util::varExport(@$_SESSION));
+            $body[] = $this->_makeSection("SESSION", Util::varExport(@$_SESSION));
         }
         // Append body suffix?
         $suffix = $this->_bodySuffix && is_callable($this->_bodySuffix)? call_user_func($this->_bodySuffix) : $this->_bodySuffix;

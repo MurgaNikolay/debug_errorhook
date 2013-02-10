@@ -1,5 +1,9 @@
 <?php
-class Debug_ErrorHook_Util
+
+namespace Debug\ErrorHook;
+
+
+class Util
 {
     /**
      * var_export clone, without using output buffering.

@@ -1,4 +1,6 @@
 <?php
+
+namespace Debug\ErrorHook;
 /**
  * Wrapper which denies duplicated notifications to be
  * processed again and again. It is needed to lower the
@@ -8,9 +10,7 @@
  * It takes care about garbage collecting.
  */
 
-require_once "Debug/ErrorHook/INotifier.php";
-
-class Debug_ErrorHook_RemoveDupsWrapper implements Debug_ErrorHook_INotifier
+class RemoveDupsWrapper implements INotifier
 {
 	const DEFAULT_PERIOD = 300;
 	const ERROR_FILE_SUFFIX = ".error";
@@ -21,7 +21,7 @@ class Debug_ErrorHook_RemoveDupsWrapper implements Debug_ErrorHook_INotifier
 	private $_period;
 	private $_gcExecuted = false;
 	
-	public function __construct(Debug_ErrorHook_INotifier $notifier, $tmpPath = null, $period = null)
+	public function __construct(INotifier $notifier, $tmpPath = null, $period = null)
 	{
 		$this->_tmpPath = $tmpPath? $tmpPath : $this->_getDefaultTmpPath();
 		$this->_period = $period? $period : self::DEFAULT_PERIOD;

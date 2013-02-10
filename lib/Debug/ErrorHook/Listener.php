@@ -1,4 +1,6 @@
 <?php
+
+namespace Debug\ErrorHook;
 /**
  * Class to catch notices, warnings and even fatal errors
  * and push them to a number of notifiers (e.g. - to email).
@@ -8,10 +10,7 @@
  * @version 1.00
  */
 
-require_once "Debug/ErrorHook/Catcher.php";
-require_once "Debug/ErrorHook/INotifier.php";
-
-class Debug_ErrorHook_Listener
+class Listener
 {
 	private $_catcher = null;
 	
@@ -19,11 +18,11 @@ class Debug_ErrorHook_Listener
 	 * Creates a new listener object.
 	 * When this object is destroyed, all hooks are removed.
 	 * 
-	 * @return Debug_ErrorHook_Listener
+	 * @return Listener
 	 */
     public function __construct() 
     {
-        $this->_catcher = new Debug_ErrorHook_Catcher();
+        $this->_catcher = new Catcher();
     }
 
     /**
@@ -40,10 +39,10 @@ class Debug_ErrorHook_Listener
      * Adds a new notifier to the list. Notifiers are called in case
      * of notices and even fatal errors.
      * 
-     * @param Debug_ErrorHook_INotifier $notifier
+     * @param INotifier $notifier
      * @return void
      */
-    public function addNotifier(Debug_ErrorHook_INotifier $notifier)
+    public function addNotifier(INotifier $notifier)
     {
     	$this->_catcher->addNotifier($notifier);
     }
