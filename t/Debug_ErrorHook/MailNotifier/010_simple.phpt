@@ -1,5 +1,5 @@
 --TEST--
-Debug_ErrorHook_MailNotifier: simple test
+Debug\ErrorHook\MailNotifier: simple test
 --FILE--
 <?php
 require dirname(__FILE__) . '/init.php';

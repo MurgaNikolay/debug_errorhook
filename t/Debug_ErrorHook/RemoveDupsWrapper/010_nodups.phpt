@@ -1,5 +1,5 @@
 --TEST--
-Debug_ErrorHook_RemoveDupsWrapper: no duplicated notifications should be sent
+Debug\ErrorHook\RemoveDupsWrapper: no duplicated notifications should be sent
 --FILE--
 <?php
 require dirname(__FILE__) . '/init.php';

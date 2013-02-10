@@ -2,7 +2,7 @@
 require_once dirname(__FILE__) . "/../init.php";
 require_once "Debug/ErrorHook/TextNotifier.php";
 
-class TestTextPrintNotifier extends Debug_ErrorHook_TextNotifier
+class TestTextPrintNotifier extends Debug\ErrorHook\TextNotifier
 {
 	protected function _notifyText($subject, $body)
 	{
@@ -13,5 +13,5 @@ class TestTextPrintNotifier extends Debug_ErrorHook_TextNotifier
 	}
 }
 
-$printListener = new Debug_ErrorHook_Listener();
+$printListener = new Debug\ErrorHook\Listener();
 $printListener->addNotifier(new TestTextPrintNotifier(TestTextPrintNotifier::LOG_ALL));

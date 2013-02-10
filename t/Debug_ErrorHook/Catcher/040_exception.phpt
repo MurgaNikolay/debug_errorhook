@@ -1,5 +1,5 @@
 --TEST--
-Debug_ErrorHook_Catcher: unhandled exception
+Debug\ErrorHook\Catcher: unhandled exception
 --FILE--
 <?php
 require dirname(__FILE__) . '/init.php';

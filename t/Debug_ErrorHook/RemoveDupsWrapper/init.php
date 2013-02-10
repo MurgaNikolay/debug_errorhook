@@ -9,7 +9,7 @@ function cleanupTmp()
 	rmdir($dir);
 }
 
-$printListenerWithNoDups = new Debug_ErrorHook_Listener();
-$printListenerWithNoDups->addNotifier(new Debug_ErrorHook_RemoveDupsWrapper(new PrintNotifier(), 'fixture', 100));
+$printListenerWithNoDups = new Debug\ErrorHook\Listener();
+$printListenerWithNoDups->addNotifier(new Debug\ErrorHook\RemoveDupsWrapper(new PrintNotifier(), 'fixture', 100));
 
 register_shutdown_function("cleanupTmp");

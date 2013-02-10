@@ -1,5 +1,5 @@
 --TEST--
-Debug_ErrorHook_TextNotifier: catch fatal errors
+Debug\ErrorHook\TextNotifier: catch fatal errors
 --FILE--
 <?php
 require dirname(__FILE__) . '/init.php';

@@ -22,7 +22,7 @@ function cleanupStdout($s)
 	return $s;
 }
 
-class PrintNotifier implements Debug_ErrorHook_INotifier
+class PrintNotifier implements Debug\ErrorHook\INotifier
 {
 	public function notify($errno, $errstr, $errfile, $errline, $trace)
 	{

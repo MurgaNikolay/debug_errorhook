@@ -1,5 +1,5 @@
 --TEST--
-Debug_ErrorHook_TextNotifier: make text version of a notification
+Debug\ErrorHook\TextNotifier: make text version of a notification
 --FILE--
 <?php
 require dirname(__FILE__) . '/init.php';

@@ -1,5 +1,5 @@
 --TEST--
-Debug_ErrorHook_Catcher: notices and warnings
+Debug\ErrorHook\Catcher: notices and warnings
 --FILE--
 <?php
 require dirname(__FILE__) . '/init.php';

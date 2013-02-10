@@ -1,5 +1,5 @@
 --TEST--
-Debug_ErrorHook_Catcher: fatal error
+Debug\ErrorHook\Catcher: fatal error
 --FILE--
 <?php
 require dirname(__FILE__) . '/init.php';

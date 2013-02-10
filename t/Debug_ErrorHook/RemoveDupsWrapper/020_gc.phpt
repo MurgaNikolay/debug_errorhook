@@ -1,10 +1,10 @@
 --TEST--
-Debug_ErrorHook_RemoveDupsWrapper: GC check
+Debug\ErrorHook\RemoveDupsWrapper: GC check
 --FILE--
 <?php
 require dirname(__FILE__) . '/init.php';
 
-class TestRemoveDups extends Debug_ErrorHook_RemoveDupsWrapper
+class TestRemoveDups extends Debug\ErrorHook\RemoveDupsWrapper
 {
 	protected function _getGcProbability()
 	{
@@ -14,11 +14,11 @@ class TestRemoveDups extends Debug_ErrorHook_RemoveDupsWrapper
 
 // Hmm... without this line PHP calls $printListenerWithNoDups's destructor
 // AFTER reassignment. Possibly it is correct: if an exception is
-// raised at Debug_ErrorHook_Listener, $printListenerWithNoDups will
+// raised at Debug\ErrorHook\Listener, $printListenerWithNoDups will
 // stay unchanged. 
 $printListenerWithNoDups = null;
 
-$printListenerWithNoDups = new Debug_ErrorHook_Listener();
+$printListenerWithNoDups = new Debug\ErrorHook\Listener();
 $printListenerWithNoDups->addNotifier(new TestRemoveDups(new PrintNotifier(), 'fixture', "0e0"));
 
 echo $a;

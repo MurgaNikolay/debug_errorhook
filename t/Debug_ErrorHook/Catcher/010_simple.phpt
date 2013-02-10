@@ -1,5 +1,5 @@
 --TEST--
-Debug_ErrorHook_Catcher: simple trigger_error()
+Debug\ErrorHook\Catcher: simple trigger_error()
 --FILE--
 <?php
 require dirname(__FILE__) . '/init.php';
