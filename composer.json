@@ -2,7 +2,7 @@
     "name": "murganikolay/debug-errorhook",
     "description": "Intercept PHP errors (including fatals) and process them (e.g. send to E-mail). Based on http://en.dklab.ru/lib/Debug_ErrorHook/ by Dmitry Koterov",
     "minimum-stability": "stable",
-    "license" : "MIT",
+    "license" : "LGPL",
     "authors": [
         {
             "name": "Dmitry Koterov"
@@ -14,5 +14,11 @@
     ],
     "require": {
         "php": "5.*"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Debug\\ErrorHook\\": "lib/"
+        }
     }
 }
