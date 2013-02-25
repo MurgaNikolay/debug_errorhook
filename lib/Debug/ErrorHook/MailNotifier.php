@@ -3,46 +3,46 @@
 namespace Debug\ErrorHook;
 /**
  * Sends all notifications to a specified email.
- * 
+ *
  * Consider using this class together with RemoveDupsWrapper
- * to avoid mail server flooding when a lot of errors arrives. 
+ * to avoid mail server flooding when a lot of errors arrives.
  */
 
 class MailNotifier extends TextNotifier
 {
-	private $_to;
-	private $_charset;
-	private $_whatToSend;
-	private $_subjPrefix;
-	
-	public function __construct($to, $whatToSend, $subjPrefix = "[ERROR] ", $charset = "UTF-8")
-	{
-        parent::__construct($whatToSend);
-		$this->_to = $to;
-		$this->_subjPrefix = $subjPrefix;
-		$this->_charset = $charset;
-	}
-	
+    protected $_to;
+    protected $_from;
+    protected $_charset = "UTF-8";
+    protected $_whatToSend;
+    protected $_subjPrefix = "[ERROR]";
+
+    public function __construct($options = [])
+    {
+        parent::__construct($options);
+    }
+
     protected function _notifyText($subject, $body)
     {
-    	$this->_mail(
-    	   $this->_to, 
-    	   $this->_encodeMailHeader($this->_subjPrefix . $subject), 
-    	   $body,
-    	   join("\r\n", array(
-    	       "From: {$this->_to}",
-    	       "Content-Type: text/plain; charset={$this->_charset}"
-    	   ))
-    	);
+        foreach($this->_to as $to) {
+            $this->_mail(
+                $to,
+                $this->_encodeMailHeader($this->_subjPrefix . $subject),
+                $body,
+                join("\r\n", array(
+                    "From: {$this->_from}",
+                    "Content-Type: text/plain; charset={$this->_charset}"
+                ))
+            );
+        }
     }
-    
+
     protected function _mail()
     {
-    	$args = func_get_args();
-    	@call_user_func_array("mail", $args);
+        $args = func_get_args();
+        @call_user_func_array("mail", $args);
     }
-    
-    private function _encodeMailHeader($header) 
+
+    private function _encodeMailHeader($header)
     {
         return preg_replace_callback(
             '/((?:^|>)\s*)([^<>]*?[^\w\s.][^<>]*?)(\s*(?:<|$))/s',
@@ -51,9 +51,54 @@ class MailNotifier extends TextNotifier
         );
     }
 
-    private function _encodeMailHeaderCallback($p) 
+    private function _encodeMailHeaderCallback($p)
     {
-    	$encoding = $this->_charset;
+        $encoding = $this->_charset;
         return $p[1] . "=?$encoding?B?" . base64_encode($p[2]) . "?=" . $p[3];
-    }    
+    }
+
+    public function setCharset($charset)
+    {
+        $this->_charset = $charset;
+    }
+
+    public function getCharset()
+    {
+        return $this->_charset;
+    }
+
+    public function setSubjPrefix($subjPrefix)
+    {
+        $this->_subjPrefix = $subjPrefix;
+    }
+
+    public function getSubjPrefix()
+    {
+        return $this->_subjPrefix;
+    }
+
+    public function setWhatToSend($whatToSend)
+    {
+        $this->_whatToSend = $whatToSend;
+    }
+
+    public function getWhatToSend()
+    {
+        return $this->_whatToSend;
+    }
+
+    public function setTo($to)
+    {
+        $this->_to = (array) $to;
+    }
+
+    public function getTo()
+    {
+        return $this->_to;
+    }
+
+    public function setFrom($from)
+    {
+        $this->_from = $from;
+    }
 }

@@ -9,12 +9,12 @@ interface INotifier
 	/**
 	 * Called when an error occurred.
 	 * 
-	 * @param string $errno
-	 * @param string $errstr
-	 * @param string $errfile
-	 * @param string $errline
+	 * @param string $errNo
+	 * @param string $errStr
+	 * @param string $errFile
+	 * @param string $errLine
 	 * @param array $trace
 	 * @return void
 	 */
-    public function notify($errno, $errstr, $errfile, $errline, $trace);
+    public function notify($errNo, $errStr, $errFile, $errLine, $trace);
 }

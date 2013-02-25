@@ -24,13 +24,13 @@ function cleanupStdout($s)
 
 class PrintNotifier implements Debug\ErrorHook\INotifier
 {
-	public function notify($errno, $errstr, $errfile, $errline, $trace)
+	public function notify($errNo, $errStr, $errFile, $errLine, $trace)
 	{
 		printr(
 			array(
-				"errno" => $errno,
-				"errstr" => $errstr,
-				"errfile" => basename($errfile),
+				"errno" => $errNo,
+				"errstr" => $errStr,
+				"errfile" => basename($errFile),
 				"errline" => "*",
 				"tracecount" => count($trace)
 			),
