@@ -10,7 +10,6 @@ class ErrorHookFactory
         foreach ($options['notifiers'] as $notifierOptions) {
             $notifier = $this->_createNotifier($notifierOptions);
             if ($notifier) {
-                print 'dsfsdfsd';
                 $errorListener->addNotifier($notifier);
             }
         }
