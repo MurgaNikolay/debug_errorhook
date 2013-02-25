@@ -34,9 +34,14 @@ Execute this in your script's bootstrap code:
           300            // do not resend the same error within 300 seconds
       )
   );
-  // Attention! When $errorsToMail is destroyed (e.g. went out of
+
+Or using factory:
+$factory = new \Debug\ErrorHook\ErrorHookFactory();
+$errorsToMail = $factory->create(require 'config/errorhook.php');
+
+ // Attention! When $errorsToMail is destroyed (e.g. went out of
   // scope), error hooks are removed. Hooks are active till $errorsToMail's
-  // destructor execution. So you should commonly save $errorsToMail somewhere 
+  // destructor execution. So you should commonly save $errorsToMail somewhere
   // in a safe place (e.g. in $GLOBALS or in a class static property) and
   // be sure it is not destroyed until your script is finished.
 
